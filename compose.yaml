@@ -1,7 +1,26 @@
 services:
   backend:
-    build: backend
+    image: openjdk:20
+    volumes:
+      - ./build/libs/employeeAPI-1.0.0.jar:/app/employeeAPI-1.0.0.jar
+    command: java -jar /app/employeeAPI-1.0.0.jar
     ports:
-    - 8080:8080
+      - 8080:8080
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   db:
-    image: h2
+    image: "oscarfonts/h2:latest"
+    ports:
+      - 1521:1521
+    volumes:
+      - h2-data:/path/to/h2/data
+
+volumes:
+  h2-data:
+    driver: local

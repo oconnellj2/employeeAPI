@@ -5,14 +5,19 @@
 - [x] Build and understand basic RESTful API development.
 - [x] Integrate embedded H2 database and access via JPA.
 - [x] Implement basic CRUD operations.
-- [ ] Implement Databse abstraction with DTO mapping.
-- [ ] Implement Kubernetes containerization.
-- [ ] Implement API documentation
-- [ ] Implement Role-based security :shrug:
+- [x] Implement Docker containerization.
+- [ ] Implement Helm Charts.
+- [ ] Deploy your Helm chart to a Kubernetes cluster.
+
 
 
 ## Dependencies
 - Java v20
+- Docker Desktop install (and logged in)
+  - K8s
+  - oscarfonts/h2
+- Helm
+- kubectl (controls the Kubernetes cluster manager)
 - *More to be added as I try to remember how I setup my env.*
 
 ## Running Locally

@@ -29,7 +29,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("com.h2database:h2")
 	compileOnly("org.projectlombok:lombok")
-	// developmentOnly("org.springframework.boot:spring-boot-docker-compose")
+	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
