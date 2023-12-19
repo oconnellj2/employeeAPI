@@ -16,7 +16,10 @@ public class Database {
 	CommandLineRunner initDataBase(EmployeeRepository repo) {
 		return args -> {
 			log.info("Preloading " + repo.save(new Employee("Bilbo Baggins", "burglar")));
-			log.info("Preloading " + repo.save(new Employee("Frodo Baggins", "thief")));
+			log.info("Preloading " + repo.save(new Employee("Frodo Baggins", "ring bearer")));
+			log.info("Preloading " + repo.save(new Employee("Samwise Gamgee", "side kick")));
+			log.info("Preloading " + repo.save(new Employee("Pippin Took", "fool")));
+			log.info("Preloading " + repo.save(new Employee("Merry Brandybuck", "mischievous")));
 		};
 	}
 }
