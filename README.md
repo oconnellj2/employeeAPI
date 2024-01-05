@@ -6,9 +6,9 @@
 - [x] Integrate embedded H2 database and access via JPA.
 - [x] Implement basic CRUD operations.
 - [x] Implement Docker containerization.
-- [ ] Implement Helm Charts.
-- [ ] Deploy your Helm chart to a Kubernetes cluster.
-
+- [x] Implement Helm Charts.
+- [x] Deploy to a Kubernetes cluster using Helm charts.
+> Note: Successful deployment to a local Kubernetes cluster, however network challanges prevent hitting the API at the address/port. Using port forwarding to 8080 seems to do the trick... but thats about as far as we go here...
 
 
 ## Dependencies
@@ -16,9 +16,8 @@
 - Docker Desktop install (and logged in)
   - K8s
   - oscarfonts/h2
-- Helm
+- Helm (used Homebrew for dependencies on Mac OSX)
 - kubectl (controls the Kubernetes cluster manager)
-- *More to be added as I try to remember how I setup my env.*
 
 ## Running Locally
 
@@ -30,6 +29,31 @@
 **Run:**
 ```bash
 ./gradlew bootRun
+```
+
+## Running With Docker
+> Note: `jdoconnell` is simply my Docker Hub username. Substitue with your username.
+
+**Build:**
+```bash
+docker build -t jdoconnell/employee-api:1.0.0 .
+```
+
+**Run:**
+```bash
+docker run -p 8080:8080 jdoconnell/employee-api:1.0.0
+```
+
+## Push to Docker Hub (to deploy with k8s)
+
+**Login:**
+```bash
+docker login
+```
+
+**Push:**
+```bash
+docker push jdoconnell/employee-api:1.0.0
 ```
 
 ## Basic Functional Tests

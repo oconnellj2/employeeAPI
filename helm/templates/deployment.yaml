@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-deployment    # The name of the Kubernetes deployment
+spec:
+  replicas: {{ .Values.replicaCount }}  # Number of replicas for the deployment
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}             # Selector for the pods controlled by this deployment
+      release: {{ .Release.Name }}        # Additional selector for the pods
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}           # Label for the pods created by this deployment
+        release: {{ .Release.Name }}      # Additional label for the pods
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}        # Name of the container
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"  # Docker image for the container
+          ports:
+            - containerPort: {{ .Values.service.port }}  # Port exposed by the container
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: production  # Example environment variable
+          # Add other necessary configurations like volumes, resources, etc.

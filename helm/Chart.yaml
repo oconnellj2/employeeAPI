@@ -1,0 +1,8 @@
+apiVersion: v2               # The API version of the Helm chart format
+name: employee-api           # The name of the Helm chart. Used as the release name when deploying the chart.
+version: 0.1.0               # The version of the Helm chart.
+appVersion: 1.0.0            # The version of the application being deployed. Metadata may not match Helm chart version.
+description: A Helm chart for deploying the Spring Boot API # A brief description of the Helm chart.
+maintainers:
+  - name: James O'Connell    # The name of the maintainer.
+    email: oconnellj2@pm.me  # The email address of the maintainer.

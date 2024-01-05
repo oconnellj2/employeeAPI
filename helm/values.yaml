@@ -1,0 +1,8 @@
+image:
+  repository: jdoconnell/employee-api  # Docker repository for the application image
+  tag: 1.0.0                           # Docker image tag/version
+replicaCount: 3                        # Number of replicas for the application deployment
+service:
+  type: NodePort                       # Type of Kubernetes service (NodePort in this case)
+  port: 8080                           # Port exposed by the Kubernetes service
+  nodePort: 32312                      # NodePort to expose externally for the service

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-service   # The name of the Kubernetes service
+  labels:
+    app: {{ .Chart.Name }}          # Label for the application
+    chart: {{ .Chart.Name }}         # Label for the Helm chart
+    release: {{ .Release.Name }}      # Label for the Helm release
+    heritage: {{ .Release.Service }}  # Label indicating Helm as the release manager
+spec:
+  selector:
+    app: {{ .Chart.Name }}           # Selector for the pods controlled by this service
+    release: {{ .Release.Name }}      # Additional selector for the pods
+  ports:
+    - protocol: TCP
+      port: 32312                    # Port exposed by the Kubernetes service
+      targetPort: 8080               # Port to which the service will forward traffic
+      nodePort: 32312                # NodePort to expose externally for the service
+  type: NodePort                     # Type of Kubernetes service (NodePort in this case)
