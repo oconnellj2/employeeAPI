@@ -8,8 +8,6 @@
 - [x] Implement Docker containerization.
 - [x] Implement Helm Charts.
 - [x] Deploy to a Kubernetes cluster using Helm charts.
-> Note: Successful deployment to a local Kubernetes cluster, however network challanges prevent hitting the API at the address/port. Using port forwarding to 8080 seems to do the trick... but thats about as far as we go here...
-
 
 ## Dependencies
 - Java v20
@@ -54,6 +52,32 @@ docker login
 **Push:**
 ```bash
 docker push jdoconnell/employee-api:1.0.0
+```
+
+## Install helm charts to deploy to k8s
+
+**Install:**
+```bash
+helm install employeeapi-release ./helm
+```
+> You should now see Kubernetes deployment(s) and Pod(s) on your Docker desktop or via CLI
+
+**Check your pods:**
+```bash
+kubectl get pods
+```
+> Check out more kubectl commands you can use to manage your deployment (i.e. describe, logs, get deployments...).
+
+**Validate with port forwarding**
+- I had some timeout issues that I suspect are related to network firewalls on my machine when hitting `http://10.1.0.52:32312/employees`.
+- Therefore, I simply forwarded the port to 8080 to validate:
+```bash
+kubectl port-forward service/employee-api-service 8080:32312
+```
+- Now:
+```bash
+curl -v http://localhost:8080/employees | json_pp
+
 ```
 
 ## Basic Functional Tests
